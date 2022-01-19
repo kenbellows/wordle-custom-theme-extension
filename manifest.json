@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Wordle Customizer",
+  "version": "0.1",
+  "icons": {
+    "48": "icons/48.png"
+  },
+  "description": "Use custom colors and symbols on Wordle (https://www.powerlanguage.co.uk/wordle/)",
+  "content_scripts": [
+    {
+      "matches": ["https://www.powerlanguage.co.uk/wordle/"],
+      "js": ["index.js"]
+    }
+  ]
+}
