@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Wordle Color Customizer",
-  "version": "1.0",
+  "version": "1.1",
   "icons": {
     "48": "icons/48.png",
     "128": "icons/128.png"
@@ -12,6 +12,5 @@
       "matches": ["https://www.powerlanguage.co.uk/wordle/"],
       "js": ["index.js"]
     }
-  ],
-  "permissions": ["clipboardRead", "clipboardWrite"]
+  ]
 }

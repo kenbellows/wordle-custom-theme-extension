@@ -104,15 +104,18 @@ function colorSetting(title, description) {
 
 async function updateClipboardColors() {
   const text = await navigator.clipboard.readText()
-  await navigator.clipboard.writeText(
-    text
-      .replaceAll('🟨', '-')
-      .replaceAll('🟦', '-')
-      .replaceAll('🟩', '+')
-      .replaceAll('🟧', '+')
-      .replaceAll('-', colors[settings.present])
-      .replaceAll('+', colors[settings.correct])
-  )
+  let updatedText = text
+  if (colors[settings.present]) {
+    updatedText = updatedText.replaceAll('🟦', '-').replaceAll('🟨', '-')
+  }
+  if (colors[settings.correct]) {
+    updatedText = updatedText.replaceAll('🟩', '+').replaceAll('🟧', '+')
+  }
+
+  updatedText = updatedText
+    .replaceAll('-', colors[settings.present])
+    .replaceAll('+', colors[settings.correct])
+  await navigator.clipboard.writeText(updatedText)
 }
 function initShareButton(shareButton) {
   shareButton.addEventListener('click', () =>
