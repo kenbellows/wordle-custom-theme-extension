@@ -6,6 +6,9 @@
     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
   </a>
 </p>
+
+**Now supports NYT site!**
+
 ## License
 
 MIT © [Ken Bellows](https://kenbellows.com)
