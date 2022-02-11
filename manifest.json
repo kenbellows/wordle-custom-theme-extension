@@ -9,7 +9,10 @@
   "description": "Use custom colors on Wordle!",
   "content_scripts": [
     {
-      "matches": ["https://www.powerlanguage.co.uk/wordle/"],
+      "matches": [
+        "https://www.powerlanguage.co.uk/wordle/",
+        "https://www.nytimes.com/games/wordle*"
+      ],
       "js": ["index.js"]
     }
   ]
