@@ -103,19 +103,23 @@ function colorSetting(title, description) {
 }
 
 async function updateClipboardColors() {
-  const text = await navigator.clipboard.readText()
-  let updatedText = text
-  if (colors[settings.present]) {
-    updatedText = updatedText.replaceAll('🟦', '-').replaceAll('🟨', '-')
-  }
-  if (colors[settings.correct]) {
-    updatedText = updatedText.replaceAll('🟩', '+').replaceAll('🟧', '+')
-  }
+  try {
+    const text = await navigator.clipboard.readText()
+    let updatedText = text
+    if (colors[settings.present]) {
+      updatedText = updatedText.replaceAll('🟦', '-').replaceAll('🟨', '-')
+    }
+    if (colors[settings.correct]) {
+      updatedText = updatedText.replaceAll('🟩', '+').replaceAll('🟧', '+')
+    }
 
-  updatedText = updatedText
-    .replaceAll('-', colors[settings.present])
-    .replaceAll('+', colors[settings.correct])
-  await navigator.clipboard.writeText(updatedText)
+    updatedText = updatedText
+      .replaceAll('-', colors[settings.present])
+      .replaceAll('+', colors[settings.correct])
+    await navigator.clipboard.writeText(updatedText)
+  } catch (error) {
+    console.log('Could not update clipboard:', error)
+  }
 }
 function initShareButton(shareButton) {
   shareButton.addEventListener('click', () =>
