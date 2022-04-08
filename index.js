@@ -1,15 +1,16 @@
+const DEFAULT_SETTINGS = { present: '#c9b458', correct: '#6aaa64' }
 const LS_KEY = '--wordle-custom-colors'
-const settings = JSON.parse(localStorage.getItem(LS_KEY)) || {}
+const settings = JSON.parse(localStorage.getItem(LS_KEY)) || DEFAULT_SETTINGS
 
 function save() {
   localStorage.setItem(LS_KEY, JSON.stringify(settings))
 }
 
 if (settings.correct) {
-  document.body.style.setProperty('--color-correct', settings.correct)
+  setCorrect(settings.correct)
 }
 if (settings.present) {
-  document.body.style.setProperty('--color-present', settings.present)
+  setPresent(settings.present)
 }
 
 const gameApp = document.querySelector('game-app').shadowRoot
@@ -60,6 +61,11 @@ function initSettings(gameSettings) {
       'Tile color when a letter is present in the correct spot'
     )
   )
+
+  // remove High Contrast Mode setting
+  ;[...firstSection.querySelectorAll('.setting')]
+    .find((s) => s.textContent.trim().startsWith('High Contrast Mode'))
+    .remove()
 }
 
 const colors = {
@@ -68,8 +74,8 @@ const colors = {
   '#f00': '🟥',
   '#0078d7': '🟦',
   '#f7630c': '🟧',
-  '#fff100': '🟨',
-  '#22c60c': '🟩',
+  '#c9b458': '🟨',
+  '#6aaa64': '🟩',
   '#886ce4': '🟪',
   '#8e562e': '🟫'
 }
@@ -121,8 +127,19 @@ async function updateClipboardColors() {
     console.log('Could not update clipboard:', error)
   }
 }
+
 function initShareButton(shareButton) {
   shareButton.addEventListener('click', () =>
     setTimeout(updateClipboardColors, 100)
   )
+}
+
+function setCorrect(color) {
+  document.body.style.setProperty('--color-correct', color)
+  document.body.style.setProperty('--key-bg-correct', color)
+}
+
+function setPresent(color) {
+  document.body.style.setProperty('--color-present', color)
+  document.body.style.setProperty('--key-bg-present', color)
 }
