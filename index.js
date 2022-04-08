@@ -51,13 +51,13 @@ function initSettings(gameSettings) {
   customColorsSection.appendChild(
     colorSetting(
       'Present',
-      'Tile color when a letter is present but in the wrong spot'
+      'Tile color when a letter is present in the word in a different spot'
     )
   )
   customColorsSection.appendChild(
     colorSetting(
       'Correct',
-      'Tile color when a letter is present in the right spot'
+      'Tile color when a letter is present in the correct spot'
     )
   )
 }
